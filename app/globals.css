@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ultra text-pearl antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-pearl;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 40px rgba(255, 87, 34, 0.3);
+  }
+
+  .neon-border {
+    box-shadow:
+      0 0 0 1px rgba(255, 87, 34, 0.3),
+      0 0 20px rgba(255, 87, 34, 0.15);
+  }
+}
