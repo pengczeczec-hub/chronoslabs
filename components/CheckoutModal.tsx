@@ -362,6 +362,19 @@ function PayPalButtonsInner({
               const status = result?.status;
               if (status === "COMPLETED") {
                 console.info("[paypal] Payment completed", data.orderID);
+                try {
+                  await fetch("/api/order-notify", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      orderId: data.orderID,
+                      product,
+                      shipping,
+                    }),
+                  });
+                } catch (notifyErr) {
+                  console.error("[order-notify]", notifyErr);
+                }
                 onSuccess();
                 return;
               }
